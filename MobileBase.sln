@@ -1,0 +1,29 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileBase", "MobileBase\MobileBase.csproj", "{E73C11CC-D9A3-4E9F-BA61-74A7985387F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileBaseIos", "MobileBaseIos\MobileBaseIos.csproj", "{D62E6A50-9AEA-4645-82F1-35289BD6A9CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileBaseAndroid", "MobileBaseAndroid\MobileBaseAndroid.csproj", "{993DC469-F2C3-4EA7-9D9E-91EEE4C8B0D3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E73C11CC-D9A3-4E9F-BA61-74A7985387F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E73C11CC-D9A3-4E9F-BA61-74A7985387F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E73C11CC-D9A3-4E9F-BA61-74A7985387F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E73C11CC-D9A3-4E9F-BA61-74A7985387F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D62E6A50-9AEA-4645-82F1-35289BD6A9CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D62E6A50-9AEA-4645-82F1-35289BD6A9CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D62E6A50-9AEA-4645-82F1-35289BD6A9CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D62E6A50-9AEA-4645-82F1-35289BD6A9CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{993DC469-F2C3-4EA7-9D9E-91EEE4C8B0D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{993DC469-F2C3-4EA7-9D9E-91EEE4C8B0D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{993DC469-F2C3-4EA7-9D9E-91EEE4C8B0D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{993DC469-F2C3-4EA7-9D9E-91EEE4C8B0D3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
