@@ -3,92 +3,92 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-namespace Animation
+namespace MobileBaseIos.Animation
 {
-	public class ConcurrentAnimationSet : IEnumerable<Animator>, IList<Animator>
-	{
-		private readonly IList<Animator> _animations = new List<Animator>();
+    public class ConcurrentAnimationSet : IList<Animator>
+    {
+        private readonly IList<Animator> _animations = new List<Animator>();
 
-		public int Count => _animations.Count;
-		public bool IsReadOnly => _animations.IsReadOnly;
-		IEnumerator IEnumerable.GetEnumerator() => _animations.GetEnumerator();
-		public IEnumerator<Animator> GetEnumerator() => _animations.GetEnumerator();
+        public int Count => _animations.Count;
+        public bool IsReadOnly => _animations.IsReadOnly;
 
-		public Animator this[int index]
-		{
-			get { return _animations[index]; }
-			set { _animations[index] = value; }
-		}
+        public Animator this[int index]
+        {
+            get { return _animations[index]; }
+            set { _animations[index] = value; }
+        }
 
-
-		public void Clear()
-		{
-			_animations.Clear();
-		}
+        IEnumerator IEnumerable.GetEnumerator() => _animations.GetEnumerator();
+        public IEnumerator<Animator> GetEnumerator() => _animations.GetEnumerator();
 
 
-		public Animator Add(Animator constraint)
-		{
-			_animations.Add(constraint);
-			return constraint;
-		}
+        public void Clear()
+        {
+            _animations.Clear();
+        }
 
 
-		public ConcurrentAnimationSet Animate()
-		{
+        public int IndexOf(Animator item)
+        {
+            return _animations.IndexOf(item);
+        }
 
 
-			return this;
-		}
+        public void Insert(int index, Animator item)
+        {
+            _animations.Insert(index, item);
+        }
 
 
-		public void ForEach(Action<Animator> action)
-		{
-			foreach (var constraint in _animations)
-			{
-				action?.Invoke(constraint);
-			}
-		}
-
-		public int IndexOf(Animator item)
-		{
-			return _animations.IndexOf(item);
-		}
+        public void RemoveAt(int index)
+        {
+            _animations.RemoveAt(index);
+        }
 
 
-		public void Insert(int index, Animator item)
-		{
-			_animations.Insert(index, item);
-		}
+        void ICollection<Animator>.Add(Animator item)
+        {
+            _animations.Add(item);
+        }
 
 
-		public void RemoveAt(int index)
-		{
-			_animations.RemoveAt(index);
-		}
+        public bool Contains(Animator item)
+        {
+            return _animations.Contains(item);
+        }
 
 
-		void ICollection<Animator>.Add(Animator item)
-		{
-			_animations.Add(item);
-		}
+        public void CopyTo(Animator[] array, int arrayIndex)
+        {
+            _animations.CopyTo(array, arrayIndex);
+        }
 
 
-		public bool Contains(Animator item)
-		{
-			return _animations.Contains(item);
-		}
+        public bool Remove(Animator item)
+        {
+            return _animations.Remove(item);
+        }
 
 
-		public void CopyTo(Animator[] array, int arrayIndex)
-		{
-			_animations.CopyTo(array, arrayIndex);
-		}
+        public Animator Add(Animator constraint)
+        {
+            _animations.Add(constraint);
+            return constraint;
+        }
 
 
-		public bool Remove(Animator item)
-		{
-			return _animations.Remove(item);
-		}
-	}
+        public ConcurrentAnimationSet Animate()
+        {
+            return this;
+        }
+
+
+        public void ForEach(Action<Animator> action)
+        {
+            foreach (var constraint in _animations)
+            {
+                action?.Invoke(constraint);
+            }
+        }
+    }
 }

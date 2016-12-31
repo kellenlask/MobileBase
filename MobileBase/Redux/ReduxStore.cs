@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace Redux
+﻿namespace MobileBase.Redux
 {
 	public class ReduxStore
 	{

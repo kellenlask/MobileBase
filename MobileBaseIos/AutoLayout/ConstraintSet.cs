@@ -4,99 +4,96 @@ using System.Collections.Generic;
 using System.Linq;
 using UIKit;
 
-namespace AutoLayout
+
+namespace MobileBaseIos.AutoLayout
 {
-	public partial class ConstraintSet : IEnumerable<NSLayoutConstraint>, IList<NSLayoutConstraint>
-	{
-		private IList<NSLayoutConstraint> _constraints = new List<NSLayoutConstraint>();
+    public partial class ConstraintSet : IList<NSLayoutConstraint>
+    {
+        private readonly IList<NSLayoutConstraint> _constraints = new List<NSLayoutConstraint>();
 
-		public int Count => _constraints.Count;
-		public bool IsReadOnly => _constraints.IsReadOnly;
-		IEnumerator IEnumerable.GetEnumerator() => _constraints.GetEnumerator();
-		public IEnumerator<NSLayoutConstraint> GetEnumerator() => _constraints.GetEnumerator();
+        public int Count => _constraints.Count;
+        public bool IsReadOnly => _constraints.IsReadOnly;
 
-		public NSLayoutConstraint this[int index]
-		{
-			get
-			{
-				return _constraints[index];
-			}
+        public NSLayoutConstraint this[int index]
+        {
+            get { return _constraints[index]; }
 
-			set
-			{
-				_constraints[index] = value;
-			}
-		}
+            set { _constraints[index] = value; }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() => _constraints.GetEnumerator();
+        public IEnumerator<NSLayoutConstraint> GetEnumerator() => _constraints.GetEnumerator();
 
 
-		public void Clear()
-		{
-			ForEach(constraint => constraint.Active = false);
-			_constraints.Clear();
-		}
+        public void Clear()
+        {
+            ForEach(constraint => constraint.Active = false);
+            _constraints.Clear();
+        }
 
 
-		public NSLayoutConstraint Add(NSLayoutConstraint constraint)
-		{
-			_constraints.Add(constraint);
-			return constraint;
-		}
+        public int IndexOf(NSLayoutConstraint item)
+        {
+            return _constraints.IndexOf(item);
+        }
 
 
-		public ConstraintSet Apply(UIView view)
-		{
-			view.AddConstraints(_constraints.ToArray());
-			return this;
-		}
+        public void Insert(int index, NSLayoutConstraint item)
+        {
+            _constraints.Insert(index, item);
+        }
 
 
-		public void ForEach(Action<NSLayoutConstraint> action)
-		{
-			foreach(var constraint in _constraints)
-			{
-				action?.Invoke(constraint);
-			}
-		}
-
-		public int IndexOf(NSLayoutConstraint item)
-		{
-			return _constraints.IndexOf(item);
-		}
+        public void RemoveAt(int index)
+        {
+            _constraints.RemoveAt(index);
+        }
 
 
-		public void Insert(int index, NSLayoutConstraint item)
-		{
-			_constraints.Insert(index, item);
-		}
+        void ICollection<NSLayoutConstraint>.Add(NSLayoutConstraint item)
+        {
+            _constraints.Add(item);
+        }
 
 
-		public void RemoveAt(int index)
-		{
-			_constraints.RemoveAt(index);
-		}
+        public bool Contains(NSLayoutConstraint item)
+        {
+            return _constraints.Contains(item);
+        }
 
 
-		void ICollection<NSLayoutConstraint>.Add(NSLayoutConstraint item)
-		{
-			_constraints.Add(item);
-		}
+        public void CopyTo(NSLayoutConstraint[] array, int arrayIndex)
+        {
+            _constraints.CopyTo(array, arrayIndex);
+        }
 
 
-		public bool Contains(NSLayoutConstraint item)
-		{
-			return _constraints.Contains(item);
-		}
+        public bool Remove(NSLayoutConstraint item)
+        {
+            return _constraints.Remove(item);
+        }
 
 
-		public void CopyTo(NSLayoutConstraint[] array, int arrayIndex)
-		{
-			_constraints.CopyTo(array, arrayIndex);
-		}
+        public NSLayoutConstraint Add(NSLayoutConstraint constraint)
+        {
+            _constraints.Add(constraint);
+            return constraint;
+        }
 
 
-		public bool Remove(NSLayoutConstraint item)
-		{
-			return _constraints.Remove(item);
-		}
-	}
+        public ConstraintSet Apply(UIView view)
+        {
+            view.AddConstraints(_constraints.ToArray());
+            return this;
+        }
+
+
+        public void ForEach(Action<NSLayoutConstraint> action)
+        {
+            foreach (var constraint in _constraints)
+            {
+                action?.Invoke(constraint);
+            }
+        }
+    }
 }

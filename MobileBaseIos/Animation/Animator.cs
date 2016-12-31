@@ -1,12 +1,6 @@
-﻿using System;
-
-
-namespace Animation
+﻿namespace MobileBaseIos.Animation
 {
-	public class Animator
-	{
-		public Animator()
-		{
-		}
-	}
+    public class Animator
+    {
+    }
 }

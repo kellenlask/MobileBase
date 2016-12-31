@@ -1,22 +1,22 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using UIKit;
 
-namespace AutoLayout
+
+namespace MobileBaseIos.AutoLayout
 {
-	public static class UIViewExtensinos
-	{
-		public static T Remove<T>(this T view, ConstraintSet constraintSet) where T : UIView
-		{
-			view.RemoveConstraints(constraintSet.ToArray());
-			return view;
-		}
+    public static class UiViewExtensinos
+    {
+        public static T Remove<T>(this T view, ConstraintSet constraintSet) where T : UIView
+        {
+            view.RemoveConstraints(constraintSet.ToArray());
+            return view;
+        }
 
 
-		public static T Apply<T>(this T view, ConstraintSet constraintSet) where T : UIView
-		{
-			constraintSet.Apply(view);
-			return view;
-		}
-	}
+        public static T Apply<T>(this T view, ConstraintSet constraintSet) where T : UIView
+        {
+            constraintSet.Apply(view);
+            return view;
+        }
+    }
 }

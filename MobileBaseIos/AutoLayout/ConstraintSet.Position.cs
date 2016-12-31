@@ -2,7 +2,7 @@ using CoreGraphics;
 using UIKit;
 
 
-namespace AutoLayout
+namespace MobileBaseIos.AutoLayout
 {
 	public partial class ConstraintSet
 	{
