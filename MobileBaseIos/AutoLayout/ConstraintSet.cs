@@ -81,6 +81,13 @@ namespace MobileBaseIos.AutoLayout
         }
 
 
+        public ConstraintSet Add(ConstraintSet other)
+        {
+            ((List<NSLayoutConstraint>) _constraints).AddRange(other);
+            return this;
+        }
+
+
         public ConstraintSet Apply(UIView view)
         {
             view.AddConstraints(_constraints.ToArray());
