@@ -49,17 +49,17 @@ namespace MobileBaseIos.Animation
         }
 
 
-        public nfloat FadeInDuration
+        public TimeSpan FadeInDuration
         {
-            get { return Animation.FadeInDuration; }
-            set { Animation.FadeInDuration = value; }
+            get { return TimeSpan.FromSeconds(Animation.FadeInDuration); }
+            set { Animation.FadeInDuration = (nfloat)value.TotalSeconds; }
         }
 
 
-        public nfloat FadeOutDuration
+        public TimeSpan FadeOutDuration
         {
-            get { return Animation.FadeOutDuration; }
-            set { Animation.FadeOutDuration = value; }
+            get { return TimeSpan.FromSeconds(Animation.FadeOutDuration); }
+            set { Animation.FadeOutDuration = (nfloat)value.TotalSeconds; }
         }
 
 
@@ -213,7 +213,7 @@ namespace MobileBaseIos.Animation
 
 
         public void Apply(UIView view)
-        {
+		{
             view.Layer.AddAnimation(Animation, Key);
         }
     }

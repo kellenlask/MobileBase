@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-namespace Animation
+namespace MobileBaseIos.Animation
 {
 	public class ConcurrentAnimationSet : IEnumerable<Animator>, IList<Animator>
 	{
