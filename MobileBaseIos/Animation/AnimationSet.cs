@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-
+using System.Linq;
+using CoreAnimation;
+using UIKit;
 
 namespace MobileBaseIos.Animation
 {
-	public class ConcurrentAnimationSet : IEnumerable<Animator>, IList<Animator>
+	public class AnimationSet : IEnumerable<Animator>, IList<Animator>
 	{
 		private readonly IList<Animator> _animations = new List<Animator>();
-		private float _maxAnimationDuration = 0.0f;
 
 		public int Count => _animations.Count;
 		public bool IsReadOnly => _animations.IsReadOnly;
@@ -28,16 +29,38 @@ namespace MobileBaseIos.Animation
 		}
 
 
-		public Animator Add(Animator constraint)
+		public Animator Add(Animator animator)
 		{
-			_animations.Add(constraint);
-			return constraint;
+			_animations.Add(animator);
+			return animator;
 		}
 
 
-		public ConcurrentAnimationSet Animate()
+		public AnimationSet AnimateSequential(TimeSpan? interAnimationTiming = null)
 		{
+			TimeSpan timing = interAnimationTiming ?? new TimeSpan(0);
 
+
+
+
+
+			return this;
+		}
+
+
+		public AnimationSet AnimateConcurrent(UIView view)
+		{
+			return AnimateConcurrent(view.Layer);
+		}
+
+
+		public AnimationSet AnimateConcurrent(CALayer layer)
+		{
+			var animationGroup = CAAnimationGroup.CreateAnimation();
+
+			animationGroup.Duration = _animations.Max(a => a.Duration).TotalSeconds;
+			animationGroup.Animations = _animations.Select(animation => animation.Animation).ToArray();
+			layer.AddAnimation(animationGroup, null);
 
 			return this;
 		}
@@ -45,11 +68,12 @@ namespace MobileBaseIos.Animation
 
 		public void ForEach(Action<Animator> action)
 		{
-			foreach (var constraint in _animations)
+			foreach (var animator in _animations)
 			{
-				action?.Invoke(constraint);
+				action?.Invoke(animator);
 			}
 		}
+
 
 		public int IndexOf(Animator item)
 		{
