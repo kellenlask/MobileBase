@@ -30,9 +30,13 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Redux\ReduxStore.cs" />
+    <Compile Include="Contracts\IConfigurable.cs" />
+    <Compile Include="Collections\Arrays.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Redux\" />
+    <Folder Include="Contracts\" />
+    <Folder Include="Collections\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>
