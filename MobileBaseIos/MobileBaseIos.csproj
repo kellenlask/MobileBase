@@ -61,9 +61,8 @@
     <Compile Include="AutoLayout\UiViewExtensions.cs" />
     <Compile Include="AutoLayout\ConstraintSet.Dimension.cs" />
     <Compile Include="AutoLayout\ConstraintSet.Position.cs" />
-    <Compile Include="Animation\SequentialAnimationSet.cs" />
     <Compile Include="Animation\Animator.cs" />
-    <Compile Include="Animation\ConcurrentAnimationSet.cs" />
+    <Compile Include="Animation\AnimationSet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AutoLayout\README.txt" />
