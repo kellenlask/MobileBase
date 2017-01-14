@@ -40,11 +40,49 @@ namespace MobileBaseIos.Animation
 		{
 			TimeSpan timing = interAnimationTiming ?? new TimeSpan(0);
 
+			for (int i = 0; i < _animations.Count; i++)
+			{
 
 
 
+			}
 
 			return this;
+		}
+
+
+		private void PerformSequentialAnimation(int index, TimeSpan interAnimationDelay)
+		{
+			var enumer = _animations.GetEnumerator();
+
+			if(_animations.Count >= index) {
+				return;
+			}
+
+			// Add Animation OnCompletion Callback
+			EventHandler<CAAnimationStateEventArgs> callback;
+
+			Action removeCallback = () => {
+				_animations[index].Animation.AnimationStopped -= callback;
+			}
+
+			callback = (arg1, arg2) => {
+				// Clear event handler
+
+
+				// Sleep
+
+
+				// Apply next Animation
+
+
+			};
+
+			_animations[index].Animation.AnimationStopped += callback;
+
+			// Perform the animation at i
+			_animations[index].Apply();
+
 		}
 
 
