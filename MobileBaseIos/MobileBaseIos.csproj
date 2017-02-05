@@ -63,6 +63,7 @@
     <Compile Include="AutoLayout\ConstraintSet.Position.cs" />
     <Compile Include="Animation\Animator.cs" />
     <Compile Include="Animation\AnimationSet.cs" />
+    <Compile Include="Animation\KeyPaths.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AutoLayout\README.txt" />

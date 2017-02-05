@@ -2,13 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using CoreAnimation;
 using UIKit;
 
 namespace MobileBaseIos.Animation
 {
-	public class AnimationSet : IEnumerable<Animator>, IList<Animator>
+	public class AnimationSet : IList<Animator>
 	{
+		private Timer timer;
 		private readonly IList<Animator> _animations = new List<Animator>();
 
 		public int Count => _animations.Count;
@@ -39,50 +41,28 @@ namespace MobileBaseIos.Animation
 		public AnimationSet AnimateSequential(TimeSpan? interAnimationTiming = null)
 		{
 			TimeSpan timing = interAnimationTiming ?? new TimeSpan(0);
-
-			for (int i = 0; i < _animations.Count; i++)
-			{
-
-
-
-			}
-
+			PerformSequentialAnimation(0, timing);
 			return this;
 		}
 
 
 		private void PerformSequentialAnimation(int index, TimeSpan interAnimationDelay)
 		{
-			var enumer = _animations.GetEnumerator();
-
-			if(_animations.Count >= index) {
+			if(index >= _animations.Count)
+			{
 				return;
 			}
 
-			// Add Animation OnCompletion Callback
-			EventHandler<CAAnimationStateEventArgs> callback;
-
-			Action removeCallback = () => {
-				_animations[index].Animation.AnimationStopped -= callback;
-			}
-
-			callback = (arg1, arg2) => {
-				// Clear event handler
-
-
-				// Sleep
-
-
-				// Apply next Animation
-
-
-			};
-
-			_animations[index].Animation.AnimationStopped += callback;
-
-			// Perform the animation at i
+			// Apply animation at index
 			_animations[index].Apply();
 
+			// Start timer for the end of the first animation (if index + 1 exists)
+			timer = new Timer(
+				state => PerformSequentialAnimation(index + 1, interAnimationDelay), // Callback
+				null, // Timer State
+				(int)(interAnimationDelay.TotalMilliseconds + _animations[index].Duration.TotalMilliseconds),
+				Timeout.Infinite
+			);
 		}
 
 
