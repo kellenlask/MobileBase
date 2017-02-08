@@ -1,3 +1,4 @@
+using MobileBase.Collections;
 using CoreGraphics;
 using UIKit;
 
@@ -83,6 +84,76 @@ namespace MobileBaseIos.AutoLayout
         {
             return New(view1, view2, NSLayoutAttribute.Right, 1, margin)
                 .New(view2, view1, NSLayoutAttribute.Right, 1, -margin);
+        }
+
+
+        public ConstraintSet Size(CGSize size, params UIView[] views)
+        {
+            views.ForEach(v => Size(v, size));
+            return this;
+        }
+
+
+        public ConstraintSet Width(float size, params UIView[] views)
+        {
+            views.ForEach(v => Width(v, size));
+            return this;
+        }
+
+
+        public ConstraintSet Height(float size, params UIView[] views)
+        {
+            views.ForEach(v => Height(v, size));
+            return this;
+        }
+
+
+        public ConstraintSet SameSize(UIView view2, int margin = 0, params UIView[] views)
+        {
+            views.ForEach(v => SameSize(v, view2, margin));
+            return this;
+       }
+
+
+        public ConstraintSet SameHeight(UIView view2, int margin = 0, params UIView[] views)
+        {
+            views.ForEach(v => SameHeight(v, view2, margin));
+            return this;
+        }
+
+
+        public ConstraintSet SameWidth(UIView view2, int margin = 0, params UIView[] views)
+        {
+            views.ForEach(v => SameWidth(v, view2, margin));
+            return this;
+        }
+
+
+        public ConstraintSet SameTop(UIView view2, int margin = 0, params UIView[] views)
+        {
+            views.ForEach(v => SameTop(v, view2, margin));
+            return this;
+        }
+
+
+        public ConstraintSet SameBottom(UIView view2, int margin = 0, params UIView[] views)
+        {
+            views.ForEach(v => SameBottom(v, view2, margin));
+            return this;
+        }
+
+
+        public ConstraintSet SameLeft(UIView view2, int margin = 0, params UIView[] views)
+        {
+            views.ForEach(v => SameLeft(v, view2, margin));
+            return this;
+        }
+
+
+        public ConstraintSet SameRight(UIView view2, int margin = 0, params UIView[] views)
+        {
+            views.ForEach(v => SameRight(v, view2, margin));
+            return this;
         }
     }
 }

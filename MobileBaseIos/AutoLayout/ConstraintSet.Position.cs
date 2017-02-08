@@ -1,3 +1,4 @@
+using MobileBase.Collections;
 using CoreGraphics;
 using UIKit;
 
@@ -181,6 +182,118 @@ namespace MobileBaseIos.AutoLayout
 		public ConstraintSet BottomRight(UIView view1, UIView view2, float marginBottom, float marginRight)
 		{
 			return Bottom(view1, view2, marginBottom).Right(view1, view2, marginRight);
+		}
+
+
+		public ConstraintSet CenterXY(CGPoint position, params UIView[] views)
+		{
+			views.ForEach(v => CenterXY(v, position));
+			return this;
+		}
+
+
+		public ConstraintSet CenterX(float x, params UIView[] views)
+		{
+			views.ForEach(v => CenterX(v, x));
+			return this;
+		}
+
+
+		public ConstraintSet CenterY(float y, params UIView[] views)
+		{
+			views.ForEach(v => CenterY(v, y));
+			return this;
+		}
+
+
+		public ConstraintSet Center(UIView view2, params UIView[] views)
+		{
+			views.ForEach(v => Center(v, view2));
+			return this;
+		}
+
+
+		public ConstraintSet Top(UIView view2, float margin = 0, params UIView[] views)
+		{
+			views.ForEach(v => Top(v, view2, margin));
+			return this;
+		}
+
+
+		public ConstraintSet Bottom(UIView view2, float margin = 0, params UIView[] views)
+		{
+			views.ForEach(v => Bottom(v, view2, margin));
+			return this;
+		}
+
+
+		public ConstraintSet Left(UIView view2, float margin = 0, params UIView[] views)
+		{
+			views.ForEach(v => Left(v, view2, margin));
+			return this;
+		}
+
+
+		public ConstraintSet Right(UIView view2, float margin = 0, params UIView[] views)
+		{
+			views.ForEach(v => Right(v, view2, margin));
+			return this;
+		}
+
+
+		public ConstraintSet TopLeft(UIView view2, float margin = 0, params UIView[] views)
+		{
+			views.ForEach(v => TopLeft(v, view2, margin));
+			return this;
+		}
+
+
+		public ConstraintSet TopRight(UIView view2, float margin = 0, params UIView[] views)
+		{
+			views.ForEach(v => TopRight(v, view2, margin));
+			return this;
+		}
+
+
+		public ConstraintSet BottomLeft(UIView view2, float margin = 0, params UIView[] views)
+		{
+			views.ForEach(v => BottomLeft(v, view2, margin));
+			return this;
+		}
+
+
+		public ConstraintSet BottomRight(UIView view2, float margin = 0, params UIView[] views)
+		{
+			views.ForEach(v => BottomRight(v, view2, margin));
+			return this;
+		}
+
+
+		public ConstraintSet TopLeft(UIView view2, float marginTop, float marginLeft, params UIView[] views)
+		{
+			views.ForEach(v => TopLeft(v, view2, marginTop, marginLeft));
+			return this;
+		}
+
+
+		public ConstraintSet TopRight(UIView view2, float marginTop, float marginRight, params UIView[] views)
+		{
+			views.ForEach(v => TopRight(v, view2, marginTop, marginRight));
+			return this;
+		}
+
+
+		public ConstraintSet BottomLeft(UIView view2, float marginBottom, float marginLeft, params UIView[] views)
+		{
+			views.ForEach(v => BottomLeft(v, view2, marginBottom, marginLeft));
+			return this;
+		}
+
+
+		public ConstraintSet BottomRight(UIView view2, float marginBottom, float marginRight, params UIView[] views)
+		{
+			views.ForEach(v => BottomRight(v, view2, marginBottom, marginRight));
+			return this;
 		}
 	}
 }

@@ -68,5 +68,11 @@
   <ItemGroup>
     <None Include="AutoLayout\README.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MobileBase\MobileBase.csproj">
+      <Project>{E73C11CC-D9A3-4E9F-BA61-74A7985387F1}</Project>
+      <Name>MobileBase</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

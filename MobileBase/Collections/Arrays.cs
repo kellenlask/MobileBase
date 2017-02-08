@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Collections
+namespace MobileBase.Collections
 {
 	public static class Arrays
 	{
@@ -16,6 +16,16 @@ namespace Collections
 				array[i] = valueFactory(i);
 			}
 
+			return array;
+		}
+
+
+		/// <summary>
+		/// 	A ForEach method for foreaching through an array ever so slightly more functionally. 
+		/// </summary>
+		public static T[] ForEach<T>(this T[] array, Action<T> action)
+		{
+			Arrays.ForEach(array, action);
 			return array;
 		}
 	}
