@@ -6,8 +6,9 @@ using System.Threading;
 using CoreAnimation;
 using UIKit;
 
+
 namespace MobileBaseIos.Animation
-{
+{ 
 	public class AnimationSet : IList<Animator>
 	{
 		private Timer timer;

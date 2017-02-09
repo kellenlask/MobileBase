@@ -33,6 +33,10 @@ Design Considerations:
     - Reflection
 
 }{
+- Animator and AnimationSet (or whatever the final architecture is like) should implement a common interface.
+	- By implementing a common interface, you can add AnimationSets to other AnimationSets as IAnimators or what-have-you. 
+	- The benefit here is that the animation set hierarchy is only flattened as a natural result of running the animations. 
+	- Additionally, the implemenator will have more options when it comes to using the code. 
 }{
 }{
 }{

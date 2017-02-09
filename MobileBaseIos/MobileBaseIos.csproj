@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="AutoLayout\README.txt" />
+    <None Include="Animation\README.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MobileBase\MobileBase.csproj">
