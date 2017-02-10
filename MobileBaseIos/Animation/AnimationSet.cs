@@ -9,9 +9,14 @@ using UIKit;
 
 namespace MobileBaseIos.Animation
 { 
-	public class AnimationSet : IList<Animator>
+	/// <summary>
+	///		An animation collection class for handling sets of Animations. This class simply 
+	/// 	delegates its IList implementaion down to an internal IList of Animators. Animators
+	/// 	are an abstraction on iOS animations. 
+	/// </summary>
+	public class AnimationSet : IList<Animator>, IDisposable
 	{
-		private Timer timer;
+		private Timer _timer;
 		private readonly IList<Animator> _animations = new List<Animator>();
 
 		public int Count => _animations.Count;
@@ -39,9 +44,16 @@ namespace MobileBaseIos.Animation
 		}
 
 
+		public AnimationSet Add(AnimationSet animationSet) 
+		{
+			((List<Animator>)_animations).AddRange(animationSet);
+			return this;
+		}
+
+
 		public AnimationSet AnimateSequential(TimeSpan? interAnimationTiming = null)
 		{
-			TimeSpan timing = interAnimationTiming ?? new TimeSpan(0);
+			TimeSpan timing = interAnimationTiming ?? TimeSpan.Zero;
 			PerformSequentialAnimation(0, timing);
 			return this;
 		}
@@ -49,19 +61,24 @@ namespace MobileBaseIos.Animation
 
 		private void PerformSequentialAnimation(int index, TimeSpan interAnimationDelay)
 		{
-			if(index >= _animations.Count)
+			// If the Index is ridiculous, give up. 
+			if(index >= _animations.Count || index < 0)
 			{
 				return;
 			}
 
-			// Apply animation at index
+			// Apply the animation at index
 			_animations[index].Apply();
 
-			// Start timer for the end of the first animation (if index + 1 exists)
-			timer = new Timer(
-				state => PerformSequentialAnimation(index + 1, interAnimationDelay), // Callback
-				null, // Timer State
-				(int)(interAnimationDelay.TotalMilliseconds + _animations[index].Duration.TotalMilliseconds),
+			// Start a timer for the next animation
+			_timer = new Timer(
+				// Callback
+				state => PerformSequentialAnimation(index + 1, interAnimationDelay), 
+				// Timer State
+				null, 
+				// Delay
+				(int)(interAnimationDelay + _animations[index].Duration).TotalMilliseconds,
+				// Repeat interval
 				Timeout.Infinite
 			);
 		}
@@ -133,6 +150,13 @@ namespace MobileBaseIos.Animation
 		public bool Remove(Animator item)
 		{
 			return _animations.Remove(item);
+		}
+
+
+		public void Dispose()
+		{
+			_timer?.Dispose();
+			_timer = null;
 		}
 	}
 }
