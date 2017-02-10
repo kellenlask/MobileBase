@@ -1,7 +1,10 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
+
+
 namespace MobileBase.Collections
 {
-	public static class Arrays
+	public static class Lists
 	{
 		/// <summary>
 		/// 	A C# implementation of the F# Array Initialization from a function. 
@@ -21,12 +24,16 @@ namespace MobileBase.Collections
 
 
 		/// <summary>
-		/// 	A ForEach method for foreaching through an array ever so slightly more functionally. 
+		/// 	A ForEach method for for-eaching through an IList ever so slightly more functionally. 
 		/// </summary>
-		public static T[] ForEach<T>(this T[] array, Action<T> action)
+		public static IList<T> ForEach<T>(this IList<T> list, Action<T> action)
 		{
-			Arrays.ForEach(array, action);
-			return array;
+			foreach(var element in list)
+			{
+				action?.Invoke(element);
+			}
+
+			return list;
 		}
 	}
 }

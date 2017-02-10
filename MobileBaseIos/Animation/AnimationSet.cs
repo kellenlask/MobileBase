@@ -102,15 +102,6 @@ namespace MobileBaseIos.Animation
 		}
 
 
-		public void ForEach(Action<Animator> action)
-		{
-			foreach (var animator in _animations)
-			{
-				action?.Invoke(animator);
-			}
-		}
-
-
 		public int IndexOf(Animator item)
 		{
 			return _animations.IndexOf(item);
