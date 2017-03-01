@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace MobileBase.Collections
 {
-	public static class Lists
+	public static class ListHelpers
 	{
 		/// <summary>
 		/// 	A C# implementation of the F# Array Initialization from a function. 
@@ -35,5 +35,16 @@ namespace MobileBase.Collections
 
 			return list;
 		}
+
+
+	    public static HashSet<T> ForEach<T>(this HashSet<T> list, Action<T> action)
+	    {
+	        foreach (var item in list)
+	        {
+	            action?.Invoke(item);
+	        }
+
+	        return list;
+	    }
 	}
 }
