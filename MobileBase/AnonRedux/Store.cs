@@ -8,7 +8,8 @@ namespace MobileBase.AnonRedux
 {
     /// <summary>
     ///     A Redux Store modeled off of JavaScript -- primarily around the use of anonymous data types. This is not
-    ///     recommended use of C# -- but it will be interesting.
+    ///     recommended use of C# -- but it will be interesting. Be aware, the DLR has worse performance.
+    ///     See: https://msdn.microsoft.com/en-us/library/dd233052(v=vs.110).aspx
     /// </summary>
     public class Store
     {
