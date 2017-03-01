@@ -28,3 +28,7 @@ UpgradeLog.*
 
 # dotCover
 *.dotCover
+
+# Jetbrains
+.idea/
+
