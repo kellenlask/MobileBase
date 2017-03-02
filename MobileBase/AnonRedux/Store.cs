@@ -30,7 +30,8 @@ namespace MobileBase.AnonRedux
             _subscriptions = new Dictionary<string, HashSet<Action<dynamic>>>();
 
             // Add root reducer and subscriber notifier as middleware
-            // TODO
+
+
 
             State = initialState;
         }
@@ -38,7 +39,7 @@ namespace MobileBase.AnonRedux
 
         public ReduxAction Dispatch(ReduxAction action)
         {
-            MiddlewareFunc seedFunc = state => next => (a, dynamic) => state;
+            MiddlewareFunc seedFunc = state => state;
 
             // Apply Middleware
             var dispatch = _middleware.Aggregate(
@@ -76,6 +77,12 @@ namespace MobileBase.AnonRedux
             _middleware.Add(middleware);
             return () => _middleware.Remove(middleware);
         }
+
+
+        private MiddlewareFunc NotifySubscribers = state => next => action => {
+
+            return action;
+        };
     }
 
 
