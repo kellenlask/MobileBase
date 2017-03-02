@@ -13,9 +13,6 @@ namespace MobileBase.AnonRedux
     /// </summary>
     public class Store
     {
-        // Constants
-        public delegate Func<Func<ReduxAction, dynamic>, Func<ReduxAction, dynamic>> MiddlewareFunc(dynamic state);
-
         // Internal State
         private readonly Dictionary<string, HashSet<Action<dynamic>>> _subscriptions;
 
@@ -23,6 +20,9 @@ namespace MobileBase.AnonRedux
 
         // External State
         public dynamic State { get; private set; }
+        // Constants
+        public delegate Func<Func<ReduxAction, dynamic>, Func<ReduxAction, dynamic>> MiddlewareFunc(dynamic state);
+
 
 
         public Store(Func<ReduxAction, dynamic, dynamic> rootReducer, dynamic initialState)
@@ -30,10 +30,18 @@ namespace MobileBase.AnonRedux
             _subscriptions = new Dictionary<string, HashSet<Action<dynamic>>>();
 
             // Add root reducer and subscriber notifier as middleware
-
-
+            AddMiddleware(Notify);
 
             State = initialState;
+        }
+
+
+        private Func<Func<ReduxAction, dynamic>, Func<ReduxAction, dynamic>> Notify(dynamic state)
+        {
+            return next => action => {
+                _subscriptions[action.ActionType].ForEach(s => s?.Invoke(state));
+                return action;
+            };
         }
 
 
@@ -43,19 +51,13 @@ namespace MobileBase.AnonRedux
 
             // Apply Middleware
             var dispatch = _middleware.Aggregate(
-                 seedFunc,
-                 (func, middlewareFunc) => null
+                seedFunc,
+                (func, middlewareFunc) => null
             );
 
             State = dispatch(State)(action);
 
             return action;
-        }
-
-
-        private void Notify(ReduxAction action)
-        {
-            _subscriptions[action.ActionType].ForEach(s => s?.Invoke(State));
         }
 
 
@@ -77,12 +79,6 @@ namespace MobileBase.AnonRedux
             _middleware.Add(middleware);
             return () => _middleware.Remove(middleware);
         }
-
-
-        private MiddlewareFunc NotifySubscribers = state => next => action => {
-
-            return action;
-        };
     }
 
 
