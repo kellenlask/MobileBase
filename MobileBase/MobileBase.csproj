@@ -35,6 +35,9 @@
     <Compile Include="Redux\ReduxStore.cs" />
     <Compile Include="Contracts\IConfigurable.cs" />
     <Compile Include="Collections\ListHelpers.cs" />
+    <Compile Include="Services\RestService.cs" />
+    <Compile Include="Services\Scheduling\SchedulingModel.cs" />
+    <Compile Include="Services\Scheduling\SchedulingService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Redux\" />
