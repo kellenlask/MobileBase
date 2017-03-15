@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 
@@ -35,7 +36,18 @@ namespace MobileBase.Services.Scheduling
                 return;
             }
 
-
+            Task.Run(
+                async () => {
+                    try
+                    {
+                        await Run();
+                    }
+                    catch (Exception ex)
+                    {
+                        // TODO: Handle error
+                    }
+                }
+            );
 
             IsRunning = true;
         }
@@ -49,6 +61,32 @@ namespace MobileBase.Services.Scheduling
             }
 
             IsRunning = false;
+        }
+
+
+        private async Task Run()
+        {
+            var due = _tasks.Where(task => task.IsDue);
+
+            foreach (var task in due)
+            {
+                try
+                {
+                    var runAgain = await task.Run();
+
+                    if (!runAgain)
+                    {
+                        _tasks.Remove(task);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // TODO: Handle error
+                }
+            }
+
+            var nextRun = _tasks.Min(task => task.NextRun);
+            //TODO: Set timer for next run
         }
 
 
