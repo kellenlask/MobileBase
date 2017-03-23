@@ -30,6 +30,8 @@
   <ItemGroup>
     <Compile Include="AnonRedux\Store.cs" />
     <Compile Include="Collections\PropertyBag.cs" />
+    <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Extensions\SemaphoreSlimExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Redux\Act.cs" />
     <Compile Include="Redux\ReduxStore.cs" />

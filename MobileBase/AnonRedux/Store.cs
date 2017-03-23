@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MobileBase.Collections;
+using MobileBase.Extensions;
 
 
 namespace MobileBase.AnonRedux
